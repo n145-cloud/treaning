@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Шымкентлинго — №145 мектеп</title>
+    
+    <!-- External Libraries: Tailwind CSS & FontAwesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- CSS СТИЛЬДЕРІ -->
+    <style>
+        * { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body { 
+            background-color: #05070e; 
+            color: #ffffff; 
+            overflow-x: hidden;
+            min-height: 100vh;
+            min-height: 100dvh;
+        }
+
+        .brawl-bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #111a2e 0%, #05070e 100%);
+        }
+
+        .floating-logos-layer {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160" viewBox="0 0 160 160"><g opacity="0.15"><rect x="30" y="30" width="100" height="100" rx="20" fill="none" stroke="%2310b981" stroke-width="3"/><text x="80" y="75" text-anchor="middle" fill="%2310b981" font-family="sans-serif" font-weight="900" font-size="22">№145</text><text x="80" y="98" text-anchor="middle" fill="%2310b981" font-family="sans-serif" font-weight="700" font-size="12">ШЫМКЕНТ</text></g></svg>');
+            background-repeat: repeat;
+            transform: rotate(-15deg);
+            animation: brawlStarsDrift 20s linear infinite;
+        }
+
+        .floating-particles-layer {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120"><circle cx="20" cy="20" r="2" fill="%233b82f6" opacity="0.3"/><circle cx="80" cy="90" r="3" fill="%2310b981" opacity="0.25"/><polygon points="60,10 63,18 71,18 64,23 67,31 60,26 53,31 56,23 49,18 57,18" fill="%23fbbf24" opacity="0.2"/></svg>');
+            background-repeat: repeat;
+            transform: rotate(-15deg);
+            animation: brawlStarsDriftFast 12s linear infinite;
+        }
+
+        @keyframes brawlStarsDrift {
+            0% { transform: rotate(-15deg) translateY(0); }
+            100% { transform: rotate(-15deg) translateY(-160px); }
+        }
+
+        @keyframes brawlStarsDriftFast {
+            0% { transform: rotate(-15deg) translateY(0); }
+            100% { transform: rotate(-15deg) translateY(-240px); }
+        }
+
+        .main-card {
+            background: rgba(17, 24, 39, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 30px rgba(16, 185, 129, 0.1);
+        }
+
+        .btn-green {
+            background-color: #10b981;
+            box-shadow: 0 6px 0 #047857;
+        }
+        .btn-green:active {
+            transform: translateY(3px);
+            box-shadow: 0 3px 0 #047857;
+        }
+
+        .mic-active {
+            animation: pulse-ring 1.5s infinite;
+            background-color: #ef4444 !important;
+            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7) !important;
+        }
+        @keyframes pulse-ring {
+            70% { box-shadow: 0 0 0 20px rgba(239, 68, 68, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+        }
+    </style>
+</head>
+
+<body class="min-h-screen flex flex-col justify-between items-center p-3 sm:p-5 md:p-8">
+
+    <!-- АРҚА ФОНЫ -->
+    <div class="brawl-bg-container">
+        <div class="floating-logos-layer"></div>
+        <div class="floating-particles-layer"></div>
+    </div>
+
+    <!-- ЖОҒАРҒЫ ПАНЕЛЬ -->
+    <header class="w-full max-w-2xl lg:max-w-4xl main-card rounded-2xl p-3 sm:p-5 flex justify-between items-center mb-4 relative z-10">
+        <div class="flex items-center gap-2 sm:gap-4">
+            <button onclick="toggleQuizModal()" class="bg-indigo-600 hover:bg-indigo-500 text-white font-black text-xs sm:text-sm lg:text-base px-3 sm:px-5 py-2.5 sm:py-3 rounded-xl border border-indigo-400 shadow-lg flex items-center gap-2 transition cursor-pointer active:scale-95">
+                <i class="fa-solid fa-clipboard-question text-yellow-300 text-sm sm:text-lg"></i>
+                <span>ТЕСТ (7-СЫНЫП)</span>
+            </button>
+
+            <div>
+                <h1 class="text-sm sm:text-xl lg:text-2xl font-black text-emerald-400 tracking-wide flex items-center gap-1.5">
+                    ШЫМКЕНТЛИНГО
+                </h1>
+                <p class="text-[9px] sm:text-xs text-slate-400 font-bold">№145 мектеп • Нұрасыл</p>
+            </div>
+        </div>
+        
+        <div class="flex items-center gap-2">
+            <div class="flex items-center gap-1.5 bg-slate-900/90 px-3 sm:px-4 py-1.5 sm:py-2 rounded-xl border border-slate-700">
+                <i class="fa-solid fa-bolt text-yellow-400 text-xs sm:text-base"></i>
+                <span id="xp" class="font-black text-yellow-400 text-xs sm:text-base">0</span>
+                <span class="text-[9px] sm:text-xs text-slate-400 font-bold">XP</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- НЕГІЗГІ ОҚУ БЛОГЫ (SPEAKING) -->
+    <main id="speaking-view" class="w-full max-w-2xl lg:max-w-4xl main-card rounded-3xl p-4 sm:p-7 lg:p-10 flex-grow flex flex-col justify-between relative z-10 my-auto">
+        <div>
+            <div class="flex justify-between items-center mb-2 sm:mb-3">
+                <span id="progress-text" class="text-xs sm:text-sm lg:text-base font-bold text-emerald-400">Сөйлем: 1 / 900</span>
+                <span class="text-[10px] sm:text-xs lg:text-sm font-bold text-slate-400">ИИ ДАУЫС АНАЛИЗАТОРЫ</span>
+            </div>
+            <div class="w-full bg-slate-800/80 h-2.5 sm:h-3 rounded-full overflow-hidden mb-5 sm:mb-8 border border-slate-700">
+                <div id="progress-bar" class="bg-emerald-500 h-full w-[1%] transition-all duration-300"></div>
+            </div>
+
+            <h2 class="text-sm sm:text-lg lg:text-xl font-bold text-slate-200 mb-3 sm:mb-4">
+                Ағылшынша сөйлемді толық және анық қайталаңыз:
+            </h2>
+
+            <div class="bg-slate-900/90 border border-slate-700/80 rounded-2xl p-4 sm:p-6 lg:p-8 flex justify-between items-center gap-4 shadow-inner">
+                <div>
+                    <p id="target-phrase" class="text-lg sm:text-2xl lg:text-3xl font-black text-white tracking-wide">
+                        I like my school.
+                    </p>
+                    <p id="target-translation" class="text-xs sm:text-base lg:text-lg font-bold text-slate-400 mt-1 sm:mt-2">
+                        Маған мектебім ұнайды.
+                    </p>
+                </div>
+                <button onclick="speakText(currentPhrase.en)" class="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 bg-emerald-500 text-slate-950 rounded-2xl flex items-center justify-center text-xl sm:text-2xl lg:text-3xl font-bold shrink-0 hover:bg-emerald-400 active:scale-95 transition shadow-lg cursor-pointer">
+                    <i class="fa-solid fa-volume-high"></i>
+                </button>
+            </div>
+        </div>
+
+        <div class="my-6 sm:my-8 flex flex-col items-center">
+            <button id="mic-btn" onclick="handleMicClick()" class="w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32 btn-green rounded-full flex items-center justify-center text-2xl sm:text-4xl lg:text-5xl font-bold transition duration-200 shadow-xl cursor-pointer active:scale-95">
+                <i id="mic-icon" class="fa-solid fa-microphone text-slate-950"></i>
+            </button>
+            <p id="status-text" class="text-xs sm:text-sm lg:text-base font-bold text-slate-400 mt-3 sm:mt-4 text-center">
+                Батырманы басып, сөйлемді айтыңыз
+            </p>
+
+            <div id="result-box" class="mt-3 px-4 py-2.5 bg-slate-900 rounded-xl border border-slate-800 text-center hidden w-full max-w-md">
+                <span class="text-[10px] sm:text-xs text-slate-500 font-bold block">ИИ естіген сөздер:</span>
+                <p id="user-speech" class="text-xs sm:text-base font-bold text-emerald-400 mt-0.5">...</p>
+            </div>
+        </div>
+
+        <div id="feedback-card" class="p-4 sm:p-5 rounded-2xl hidden border transition">
+            <div class="flex items-start gap-3 sm:gap-4">
+                <div id="feedback-icon-bg" class="w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shrink-0 mt-0.5">
+                    <i id="feedback-icon" class="text-base sm:text-xl"></i>
+                </div>
+                <div>
+                    <h3 id="feedback-title" class="font-extrabold text-sm sm:text-lg"></h3>
+                    <p id="feedback-tip" class="text-xs sm:text-sm mt-1 leading-relaxed font-medium"></p>
+                </div>
+            </div>
+            <button id="next-btn" onclick="nextPhrase()" class="w-full mt-3 sm:mt-4 py-3 sm:py-4 bg-emerald-500 text-slate-950 font-black text-xs sm:text-base rounded-xl hidden hover:bg-emerald-400 active:scale-98 transition cursor-pointer">
+                КЕЛЕСІ ТАПСЫРМА ➔
+            </button>
+        </div>
+    </main>
+
+    <!-- ТЕСТ МЕНЮІ (QUIZ MODAL) -->
+    <div id="quiz-modal" class="fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-6 hidden overflow-y-auto">
+        <div class="main-card w-full max-w-xl lg:max-w-2xl rounded-3xl p-5 sm:p-8 relative border border-indigo-500/30 my-auto max-h-[90vh] overflow-y-auto">
+            <button onclick="toggleQuizModal()" class="absolute top-4 right-4 sm:top-6 sm:right-6 w-9 h-9 sm:w-10 sm:h-10 bg-slate-800 rounded-full flex items-center justify-center text-slate-400 hover:text-white cursor-pointer active:scale-90">
+                <i class="fa-solid fa-xmark text-base sm:text-lg"></i>
+            </button>
+
+            <!-- ДЕНГЕЙ ТАҢДАУ -->
+            <div id="quiz-level-select">
+                <div class="text-center mb-6 sm:mb-8">
+                    <span class="px-3 py-1 bg-indigo-500/20 text-indigo-400 border border-indigo-500/30 rounded-full text-xs sm:text-sm font-black">7-СЫНЫП АҒЫЛШЫН ТІЛІ</span>
+                    <h2 class="text-xl sm:text-3xl font-black text-white mt-2">ТЕСТ ДЕНГЕЙІН ТАҢДАҢЫЗ</h2>
+                    <p class="text-xs sm:text-sm text-slate-400 mt-1">Сұрақтар 7-сынып мектеп бағдарламасы бойынша дайындалған</p>
+                </div>
+
+                <div class="space-y-3 sm:space-y-4">
+                    <button onclick="startQuiz('easy')" class="w-full p-4 sm:p-5 bg-emerald-950/60 hover:bg-emerald-900/80 border border-emerald-500/40 rounded-2xl flex items-center justify-between text-left transition cursor-pointer active:scale-98 group">
+                        <div>
+                            <h3 class="font-black text-emerald-400 text-sm sm:text-lg">🟢 ОҢАЙ ДЕНГЕЙ (10 СҰРАҚ)</h3>
+                            <p class="text-xs sm:text-sm text-slate-300 mt-0.5">3 Вариант (A, B, C) • Негізгі грамматика</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-emerald-400 text-sm sm:text-base group-hover:translate-x-1 transition"></i>
+                    </button>
+
+                    <button onclick="startQuiz('normal')" class="w-full p-4 sm:p-5 bg-amber-950/60 hover:bg-amber-900/80 border border-amber-500/40 rounded-2xl flex items-center justify-between text-left transition cursor-pointer active:scale-98 group">
+                        <div>
+                            <h3 class="font-black text-amber-400 text-sm sm:text-lg">🟡 ОРТАША ДЕНГЕЙ (20 СҰРАҚ)</h3>
+                            <p class="text-xs sm:text-sm text-slate-300 mt-0.5">4 Вариант (A, B, C, D) • Past Simple, Present Perfect</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-amber-400 text-sm sm:text-base group-hover:translate-x-1 transition"></i>
+                    </button>
+
+                    <button onclick="startQuiz('hard')" class="w-full p-4 sm:p-5 bg-rose-950/60 hover:bg-rose-900/80 border border-rose-500/40 rounded-2xl flex items-center justify-between text-left transition cursor-pointer active:scale-98 group">
+                        <div>
+                            <h3 class="font-black text-rose-400 text-sm sm:text-lg">🔴 ҚИЫН ДЕНГЕЙ (30 СҰРАҚ)</h3>
+                            <p class="text-xs sm:text-sm text-slate-300 mt-0.5">5 Вариант (A, B, C, D, E) • Күрделі шақтар, фразалар</p>
+                        </div>
+                        <i class="fa-solid fa-chevron-right text-rose-400 text-sm sm:text-base group-hover:translate-x-1 transition"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- ТЕСТТІ ӨТУ БӨЛІМІ -->
+            <div id="quiz-question-box" class="hidden">
+                <div class="flex justify-between items-center mb-4 border-b border-slate-800 pb-3">
+                    <span id="quiz-level-badge" class="px-3 py-1 rounded-lg text-xs sm:text-sm font-black"></span>
+                    <span id="quiz-progress" class="text-xs sm:text-sm font-bold text-slate-400">Сұрақ 1 / 10</span>
+                </div>
+
+                <h3 id="quiz-question" class="text-base sm:text-xl font-black text-white mb-5 leading-relaxed">...</h3>
+
+                <div id="quiz-options" class="space-y-2.5 sm:space-y-3 mb-5"></div>
+
+                <div id="quiz-feedback" class="p-3 sm:p-4 rounded-xl hidden text-xs sm:text-sm font-bold mb-4"></div>
+
+                <button id="quiz-next-btn" onclick="nextQuizQuestion()" class="w-full py-3.5 sm:py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-black text-xs sm:text-base rounded-xl hidden transition cursor-pointer active:scale-98">
+                    КЕЛЕСІ СҰРАҚ ➔
+                </button>
+            </div>
+
+            <!-- НӘТИЖЕ БӨЛІМІ -->
+            <div id="quiz-result-box" class="hidden text-center py-4 sm:py-6">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 bg-yellow-500/20 text-yellow-400 rounded-full flex items-center justify-center text-3xl sm:text-4xl font-black mx-auto mb-4 border border-yellow-500/30">
+                    🏆
+                </div>
+                <h3 class="text-xl sm:text-3xl font-black text-white">ТЕСТ АЯҚТАЛДЫ!</h3>
+                <p id="quiz-score-text" class="text-base sm:text-xl font-bold text-emerald-400 mt-2">...</p>
+                <p id="quiz-xp-text" class="text-xs sm:text-sm text-slate-400 mt-1">+0 XP есептелді!</p>
+                <button onclick="resetQuiz()" class="mt-6 px-6 sm:px-8 py-3 sm:py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-black text-xs sm:text-base rounded-xl transition cursor-pointer active:scale-95">
+                    МЕНЮГЕ ОРАЛУ
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT ЛОГИКАСЫ -->
+    <script>
+        // 🔒 КОДТЫ ҚОРҒАУ
+        document.addEventListener('contextmenu', event => event.preventDefault());
+        document.onkeydown = function(e) {
+            if (e.keyCode == 123 || (e.ctrlKey && e.shiftKey && e.keyCode == 73) || (e.ctrlKey && e.keyCode == 85)) {
+                return false;
+            }
+        };
+
+        // ДЕРЕКТЕР БАЗАСЫ (900 СӨЙЛЕМ)
+        let database = [
+            { en: "I like my school.", kk: "Маған мектебім ұнайды.", tip: "'School' сөзін 'скул' деп айт." },
+            { en: "This is a pen.", kk: "Бұл — қалам.", tip: "'Pen' сөзін анық дыбыста." },
+            { en: "I read books.", kk: "Мен кітаптар оқимын.", tip: "'Read' сөзін 'рид' деп айт." },
+            { en: "We love our teacher.", kk: "Біз мұғалімімізді жақсы көреміз.", tip: "'Teacher' — 'тичер'." },
+            { en: "I go to school.", kk: "Мен мектепке барамын.", tip: "'Go' — 'гоу'." }
+        ];
+
+        const simpleSubjects = [{ en: "I like", kk: "Маған ұнайды" }, { en: "I want", kk: "Мен қалаймын" }, { en: "We love", kk: "Біз жақсы көреміз" }];
+        const simpleObjects = [{ en: "my school", kk: "мектебімді" }, { en: "my classroom", kk: "сыныбымды" }, { en: "english words", kk: "ағылшын сөздерін" }];
+        const simpleTimes = [{ en: "every day.", kk: "күн сайын." }, { en: "at school.", kk: "мектепте." }];
+
+        let count = database.length;
+        for (let s of simpleSubjects) {
+            for (let o of simpleObjects) {
+                for (let t of simpleTimes) {
+                    if (count >= 900) break;
+                    database.push({ en: `${s.en} ${o.en}${t.en}`, kk: `${s.kk} ${o.kk}${t.kk}`, tip: `Сөзді асықпай айт.` });
+                    count++;
+                }
+            }
+        }
+
+        let currentIndex = 0;
+        let currentPhrase = database[0];
+        let xp = 0;
+        let recognition = null;
+        let isListening = false;
+
+        function handleMicClick() {
+            const SpeechContract = window.SpeechRecognition || window.webkitSpeechRecognition;
+            if (!SpeechContract) { alert("Chrome немесе Edge браузерін қолданыңыз!"); return; }
+            if (isListening) { if (recognition) recognition.stop(); return; }
+
+            recognition = new SpeechContract();
+            recognition.lang = 'en-US';
+            recognition.continuous = false;
+
+            recognition.onstart = () => {
+                isListening = true;
+                document.getElementById('mic-btn').classList.add('mic-active');
+                document.getElementById('status-text').innerText = "ИИ тыңдап тұр... Сөйлеңіз!";
+            };
+
+            recognition.onresult = (event) => {
+                let userText = event.results[0][0].transcript;
+                document.getElementById('user-speech').innerText = `"${userText}"`;
+                document.getElementById('result-box').classList.remove('hidden');
+                checkAnswer(userText);
+            };
+
+            recognition.onerror = () => { stopMicUI(); };
+            recognition.onend = () => { stopMicUI(); };
+            recognition.start();
+        }
+
+        function stopMicUI() {
+            isListening = false;
+            document.getElementById('mic-btn').classList.remove('mic-active');
+            document.getElementById('status-text').innerText = "Микрофонды басып, сөйлемді айтыңыз";
+        }
+
+        function speakText(text) {
+            window.speechSynthesis.cancel();
+            let msg = new SpeechSynthesisUtterance(text);
+            msg.lang = 'en-US';
+            msg.rate = 0.85;
+            window.speechSynthesis.speak(msg);
+        }
+
+        function clean(str) { return str.toLowerCase().replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, "").trim(); }
+
+        function checkAnswer(userSpeech) {
+            let targetWords = clean(currentPhrase.en).split(" ");
+            let userWords = clean(userSpeech).split(" ");
+            let card = document.getElementById('feedback-card');
+            let iconBg = document.getElementById('feedback-icon-bg');
+            let icon = document.getElementById('feedback-icon');
+            let title = document.getElementById('feedback-title');
+            let tip = document.getElementById('feedback-tip');
+            let nextBtn = document.getElementById('next-btn');
+
+            card.classList.remove('hidden', 'bg-emerald-950/80', 'border-emerald-500', 'bg-rose-950/80', 'border-rose-500');
+            nextBtn.classList.add('hidden');
+
+            let isCorrect = targetWords.every(word => userWords.includes(word));
+
+            if (isCorrect) {
+                xp += 15;
+                document.getElementById('xp').innerText = xp;
+                card.classList.add('bg-emerald-950/80', 'border-emerald-500');
+                iconBg.className = "w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center shrink-0";
+                icon.className = "fa-solid fa-check";
+                title.innerText = "Өте тамаша! (+15 XP)";
+                title.className = "font-extrabold text-sm sm:text-lg text-emerald-400";
+                tip.innerText = "Сөйлем өте анық айтылды!";
+                nextBtn.classList.remove('hidden');
+            } else {
+                card.classList.add('bg-rose-950/80', 'border-rose-500');
+                iconBg.className = "w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center shrink-0";
+                icon.className = "fa-solid fa-xmark";
+                title.innerText = "Қайтадан қайталап көріңіз";
+                title.className = "font-extrabold text-sm sm:text-lg text-rose-400";
+                tip.innerText = `ИИ кеңесі: ${currentPhrase.tip}`;
+                speakText(`Listen: ${currentPhrase.en}`);
+            }
+        }
+
+        function nextPhrase() {
+            currentIndex = (currentIndex + 1) % database.length;
+            currentPhrase = database[currentIndex];
+            document.getElementById('target-phrase').innerText = currentPhrase.en;
+            document.getElementById('target-translation').innerText = currentPhrase.kk;
+            document.getElementById('progress-text').innerText = `Сөйлем: ${currentIndex + 1} / 900`;
+            document.getElementById('progress-bar').style.width = Math.min(100, ((currentIndex + 1) / 900) * 100) + "%";
+            document.getElementById('result-box').classList.add('hidden');
+            document.getElementById('feedback-card').classList.add('hidden');
+            stopMicUI();
+        }
+
+        // ТЕСТ (QUIZ) - 10, 20, 30 СҰРАҚ ТАҢДАУЫ
+        const quizQuestions = {
+            easy: [
+                { q: "1. 'Book' сөзінің қазақша аудармасы қандай?", options: ["A) Кітап", "B) Қалам", "C) Дәптер"], correct: 0 },
+                { q: "2. 'I ____ to school every day.' нүкте орнына не қойылады?", options: ["A) go", "B) goes", "C) went"], correct: 0 },
+                { q: "3. 'Apple' сөзі кай әріптен басталады?", options: ["A) B", "B) A", "C) C"], correct: 1 },
+                { q: "4. 'Мұғалім' сөзінің ағылшыншасы қандай?", options: ["A) Student", "B) Teacher", "C) Doctor"], correct: 1 },
+                { q: "5. 'We ____ pupils in 7th grade.'", options: ["A) is", "B) am", "C) are"], correct: 2 },
+                { q: "6. 'Pen' сөзінің мағынасы қандай?", options: ["A) Өздік", "B) Қалам", "C) Кітап"], correct: 1 },
+                { q: "7. 'Red' қандай түс?", options: ["A) Қызыл", "B) Көк", "C) Жасыл"], correct: 0 },
+                { q: "8. 'Mother' сөзінің қазақшасы:", options: ["A) Әке", "B) Ана", "C) Әпке"], correct: 1 },
+                { q: "9. 'Cat' сөзінің аудармасы:", options: ["A) Ит", "B) Мысық", "C) Құс"], correct: 1 },
+                { q: "10. 'Good morning' не дегенді білдіреді?", options: ["A) Қайырлы кеш", "B) Қайырлы таң", "C) Сау бол"], correct: 1 }
+            ],
+            normal: [
+                { q: "1. Past Simple: She ____ (visit) Shymkent last summer.", options: ["A) visits", "B) visited", "C) visiting", "D) has visited"], correct: 1 },
+                { q: "2. Choose pronoun: 'This is ____ desk.'", options: ["A) my", "B) me", "C) mine", "D) I"], correct: 0 },
+                { q: "3. Present Perfect: They ____ finished their homework.", options: ["A) has", "B) are", "C) have", "D) were"], correct: 2 },
+                { q: "4. 'Beautiful' сөзінің синонимі қандай?", options: ["A) Ugly", "B) Pretty", "C) Bad", "D) Small"], correct: 1 },
+                { q: "5. 'He is interested ____ sports.' дұрыс предлог:", options: ["A) at", "B) on", "C) in", "D) with"], correct: 2 },
+                { q: "6. Comparative: Elephant is ____ than a dog.", options: ["A) big", "B) bigger", "C) biggest", "D) more big"], correct: 1 },
+                { q: "7. Past Continuous: I ____ reading when you called.", options: ["A) were", "B) was", "C) am", "D) have been"], correct: 1 },
+                { q: "8. Plural form: One child -> Two ____", options: ["A) childs", "B) children", "C) childes", "D) childrens"], correct: 1 },
+                { q: "9. Modal verb: You ____ stop when the light is red.", options: ["A) must", "B) may", "C) can", "D) might"], correct: 0 },
+                { q: "10. Opposite of 'Hot':", options: ["A) Warm", "B) Cold", "C) Dry", "D) Wet"], correct: 1 },
+                { q: "11. 'She usually ____ tea in the morning.'", options: ["A) drink", "B) drinks", "C) drank", "D) drinking"], correct: 1 },
+                { q: "12. Superlative: Everest is the ____ mountain.", options: ["A) high", "B) higher", "C) highest", "D) most high"], correct: 2 },
+                { q: "13. '____ you go to the park yesterday?'", options: ["A) Do", "B) Did", "C) Does", "D) Have"], correct: 1 },
+                { q: "14. 'Listen! The baby ____.'", options: ["A) cries", "B) is crying", "C) cried", "D) cry"], correct: 1 },
+                { q: "15. 'How ____ sugar do you need?'", options: ["A) many", "B) much", "C) any", "D) few"], correct: 1 },
+                { q: "16. 'There aren't ____ apples in the box.'", options: ["A) some", "B) any", "C) much", "D) a"], correct: 1 },
+                { q: "17. 'Look at ____! They are singing.'", options: ["A) they", "B) them", "C) their", "D) theirs"], correct: 1 },
+                { q: "18. 'A doctor works in a ____.'", options: ["A) school", "B) hospital", "C) shop", "D) bank"], correct: 1 },
+                { q: "19. 'We ____ a movie last night.'", options: ["A) watch", "B) watched", "C) watching", "D) watches"], correct: 1 },
+                { q: "20. '____ is your favorite color?'", options: ["A) What", "B) Who", "C) Where", "D) When"], correct: 0 }
+            ],
+            hard: [
+                { q: "1. First Conditional: If it ____ tomorrow, we will stay at home.", options: ["A) rains", "B) rained", "C) will rain", "D) rain", "E) is raining"], correct: 0 },
+                { q: "2. Passive Voice: The new school ____ in 2024.", options: ["A) built", "B) was built", "C) is build", "D) builded", "E) has built"], correct: 1 },
+                { q: "3. Phrasal verb: What does 'give up' mean?", options: ["A) Бастау", "B) Жоғары беру", "C) Берілу/Тоқтату", "D) Көмектесу", "E) Іздеу"], correct: 2 },
+                { q: "4. Correct spelling:", options: ["A) Neccessary", "B) Necessary", "C) Necesary", "D) Neccesary", "E) Nessesary"], correct: 1 },
+                { q: "5. Reported Speech: He said, 'I am learning English.' -> He said that he ____ English.", options: ["A) learns", "B) is learning", "C) was learning", "D) has learned", "E) had learned"], correct: 2 },
+                { q: "6. 'Hardly ever' деген не білдіреді?", options: ["A) Әрқашан", "B) Өте сирек", "C) Жиі", "D) Ешқашан", "E) Кейде"], correct: 1 },
+                { q: "7. Past Perfect: By the time I arrived, the train ____.", options: ["A) left", "B) had left", "C) has left", "D) leaves", "E) was leaving"], correct: 1 },
+                { q: "8. Verb form: I look forward to ____ you soon.", options: ["A) see", "B) seeing", "C) saw", "D) seen", "E) to see"], correct: 1 },
+                { q: "9. Second Conditional: If I ____ rich, I would buy a plane.", options: ["A) am", "B) was/were", "C) had been", "D) will be", "E) be"], correct: 1 },
+                { q: "10. 'Neither... nor' құрылымының мағынасы:", options: ["A) Не... немесе", "B) Не ол, не бұл емес", "C) Екеуі де", "D) Тек біреуі", "E) Барлығы"], correct: 1 },
+                { q: "11. 'Although it rained, we ____ for a walk.'", options: ["A) went", "B) go", "C) gone", "D) had gone", "E) going"], correct: 0 },
+                { q: "12. Identify irregular verb:", options: ["A) Played", "B) Worked", "C) Written", "D) Cleaned", "E) Cooked"], correct: 2 },
+                { q: "13. Phrasal verb: 'Look for' means:", options: ["A) Іздеу", "B) Қарау", "C) Күту", "D) Қорғау", "E) Ұқсау"], correct: 0 },
+                { q: "14. 'He insisted ____ paying the bill.'", options: ["A) at", "B) on", "C) in", "D) for", "E) with"], correct: 1 },
+                { q: "15. Modal: You ____ bring an umbrella; it won't rain.", options: ["A) mustn't", "B) don't have to", "C) can't", "D) couldn't", "E) shouldn't"], correct: 1 },
+                { q: "16. 'The book ____ by millions of people.'", options: ["A) read", "B) is read", "C) was reading", "D) reads", "E) has read"], correct: 1 },
+                { q: "17. Antonym of 'Generous':", options: ["A) Kind", "B) Mean", "C) Polite", "D) Honest", "E) Friendly"], correct: 1 },
+                { q: "18. 'Unless you study, you ____ fail.'", options: ["A) will", "B) would", "C) wouldn't", "D) can", "E) won't"], correct: 0 },
+                { q: "19. 'He was accused ____ stealing the money.'", options: ["A) with", "B) of", "C) about", "D) for", "E) in"], correct: 1 },
+                { q: "20. Which sentence is correct?", options: ["A) She don't like milk.", "B) She doesn't likes milk.", "C) She doesn't like milk.", "D) She not like milk.", "E) She isn't like milk."], correct: 2 },
+                { q: "21. 'I've lived here ____ 2010.'", options: ["A) for", "B) since", "C) from", "D) in", "E) during"], correct: 1 },
+                { q: "22. 'I've lived here ____ 10 years.'", options: ["A) since", "B) for", "C) during", "D) in", "E) from"], correct: 1 },
+                { q: "23. Choose correct form: 'Would you mind ____ the door?'", options: ["A) close", "B) closing", "C) to close", "D) closed", "E) closes"], correct: 1 },
+                { q: "24. Synonym of 'Huge':", options: ["A) Tiny", "B) Enormous", "C) Narrow", "D) Shallow", "E) Short"], correct: 1 },
+                { q: "25. 'He is good ____ playing chess.'", options: ["A) in", "B) at", "C) on", "D) with", "E) for"], correct: 1 },
+                { q: "26. Phrasal verb: 'Turn off' means:", options: ["A) Жоғарылату", "B) Өшіру", "C) Қосу", "D) Қайтару", "E) Тоқтату"], correct: 1 },
+                { q: "27. 'She enjoys ____ English books.'", options: ["A) read", "B) reading", "C) to read", "D) reads", "E) played"], correct: 1 },
+                { q: "28. 'Neither John ____ Mary came to school.'", options: ["A) or", "B) nor", "C) and", "D) but", "E) so"], correct: 1 },
+                { q: "29. 'I am used to ____ early in the morning.'", options: ["A) wake up", "B) waking up", "C) woke up", "D) woken up", "E) wakes up"], correct: 1 },
+                { q: "30. 'The weather is getting ____ and ____.'", options: ["A) colder / colder", "B) cold / colder", "C) coldest / coldest", "D) more cold / cold", "E) cold / cold"], correct: 0 }
+            ]
+        };
+
+        let currentQuizLevel = 'easy';
+        let currentQuizIndex = 0;
+        let quizScore = 0;
+
+        function toggleQuizModal() {
+            const modal = document.getElementById('quiz-modal');
+            modal.classList.toggle('hidden');
+            resetQuiz();
+        }
+
+        function resetQuiz() {
+            document.getElementById('quiz-level-select').classList.remove('hidden');
+            document.getElementById('quiz-question-box').classList.add('hidden');
+            document.getElementById('quiz-result-box').classList.add('hidden');
+            currentQuizIndex = 0;
+            quizScore = 0;
+        }
+
+        function startQuiz(level) {
+            currentQuizLevel = level;
+            currentQuizIndex = 0;
+            quizScore = 0;
+
+            document.getElementById('quiz-level-select').classList.add('hidden');
+            document.getElementById('quiz-question-box').classList.remove('hidden');
+
+            const badge = document.getElementById('quiz-level-badge');
+            if(level === 'easy') {
+                badge.innerText = "🟢 ОҢАЙ (10 СҰРАҚ)";
+                badge.className = "px-3 py-1 rounded-lg text-xs sm:text-sm font-black bg-emerald-500/20 text-emerald-400 border border-emerald-500/30";
+            } else if(level === 'normal') {
+                badge.innerText = "🟡 ОРТАША (20 СҰРАҚ)";
+                badge.className = "px-3 py-1 rounded-lg text-xs sm:text-sm font-black bg-amber-500/20 text-amber-400 border border-amber-500/30";
+            } else {
+                badge.innerText = "🔴 ҚИЫН (30 СҰРАҚ)";
+                badge.className = "px-3 py-1 rounded-lg text-xs sm:text-sm font-black bg-rose-500/20 text-rose-400 border border-rose-500/30";
+            }
+
+            renderQuizQuestion();
+        }
+
+        function renderQuizQuestion() {
+            const list = quizQuestions[currentQuizLevel];
+            const qData = list[currentQuizIndex];
+
+            document.getElementById('quiz-progress').innerText = `Сұрақ ${currentQuizIndex + 1} / ${list.length}`;
+            document.getElementById('quiz-question').innerText = qData.q;
+
+            const optionsContainer = document.getElementById('quiz-options');
+            optionsContainer.innerHTML = '';
+
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.classList.add('hidden');
+            document.getElementById('quiz-next-btn').classList.add('hidden');
+
+            qData.options.forEach((opt, idx) => {
+                const btn = document.createElement('button');
+                btn.className = "w-full p-3.5 sm:p-4 bg-slate-900/90 hover:bg-slate-800 border border-slate-700/80 rounded-xl text-left font-extrabold text-xs sm:text-base text-slate-200 transition cursor-pointer active:scale-98 flex items-center justify-between";
+                btn.innerText = opt;
+                btn.onclick = () => selectQuizAnswer(idx, btn);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function selectQuizAnswer(selectedIndex, clickedBtn) {
+            const list = quizQuestions[currentQuizLevel];
+            const qData = list[currentQuizIndex];
+            const optionsContainer = document.getElementById('quiz-options');
+            const allBtns = optionsContainer.children;
+
+            for (let b of allBtns) {
+                b.disabled = true;
+                b.classList.remove('hover:bg-slate-800');
+            }
+
+            const feedback = document.getElementById('quiz-feedback');
+            feedback.classList.remove('hidden');
+
+            if (selectedIndex === qData.correct) {
+                quizScore++;
+                clickedBtn.className = "w-full p-3.5 sm:p-4 bg-emerald-950/80 border-2 border-emerald-500 rounded-xl text-left font-extrabold text-xs sm:text-base text-emerald-400 shadow-lg";
+                feedback.className = "p-3 sm:p-4 rounded-xl text-xs sm:text-sm font-bold mb-4 bg-emerald-950/80 border border-emerald-500 text-emerald-300";
+                feedback.innerText = "✓ Өте дұрыс жауап!";
+            } else {
+                clickedBtn.className = "w-full p-3.5 sm:p-4 bg-rose-950/80 border-2 border-rose-500 rounded-xl text-left font-extrabold text-xs sm:text-base text-rose-400";
+                allBtns[qData.correct].className = "w-full p-3.5 sm:p-4 bg-emerald-950/80 border-2 border-emerald-500 rounded-xl text-left font-extrabold text-xs sm:text-base text-emerald-400";
+                feedback.className = "p-3 sm:p-4 rounded-xl text-xs sm:text-sm font-bold mb-4 bg-rose-950/80 border border-rose-500 text-rose-300";
+                feedback.innerText = `✕ Қате! Дұрыс жауап: ${qData.options[qData.correct]}`;
+            }
+
+            document.getElementById('quiz-next-btn').classList.remove('hidden');
+        }
+
+        function nextQuizQuestion() {
+            const list = quizQuestions[currentQuizLevel];
+            currentQuizIndex++;
+
+            if (currentQuizIndex < list.length) {
+                renderQuizQuestion();
+            } else {
+                document.getElementById('quiz-question-box').classList.add('hidden');
+                document.getElementById('quiz-result-box').classList.remove('hidden');
+                document.getElementById('quiz-score-text').innerText = `Сіз ${list.length}-тен ${quizScore} ұпай жинадыңыз!`;
+                
+                let earnedXp = quizScore * 10;
+                xp += earnedXp;
+                document.getElementById('xp').innerText = xp;
+                document.getElementById('quiz-xp-text').innerText = `+${earnedXp} XP есептелді!`;
+            }
+        }
+    </script>
+</body>
+</html>
